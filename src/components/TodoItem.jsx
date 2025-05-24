@@ -1,4 +1,3 @@
-import { useState } from "react"
 import TodoInput from "./TodoInput.jsx"
 
 function TodoItem (props) {

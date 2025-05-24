@@ -20,29 +20,26 @@ function App() {
     setTaskID(taskID + 1);
 
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    console.log(taskText);
   }
 
   const deleteTask = (id) => {
     const existingTasks = localStorage.getItem("tasks");
-    const parsedTasks = JSON.parse(existingTasks); //string to object
+    const parsedTasks = JSON.parse(existingTasks);
 
     const updatedTasks = parsedTasks.filter(task => task.id != id);
 
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-
-    console.log(`${id} deleted`);
   }
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks'); //in the form of a string
+    const storedTasks = localStorage.getItem('tasks');
 
     if (storedTasks) {
-      const parsedTasks = JSON.parse(storedTasks); //converting string to array of objects (tasks)
-      setTasks(parsedTasks); //setting the inital state of 'tasks' to the existing list of tasks
+      const parsedTasks = JSON.parse(storedTasks);
+      setTasks(parsedTasks);
     }
-  }, []) //dependency array is blank so that the function runs only once whenever the page is refreshed
+  }, [])
 
   const toggleComplete = (id) => {
     const existingTasks = localStorage.getItem('tasks');
