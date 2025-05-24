@@ -39,7 +39,7 @@ function App() {
       const parsedTasks = JSON.parse(storedTasks);
       setTasks(parsedTasks);
     }
-  }, [])
+  }, [])  
 
   const toggleComplete = (id) => {
     const existingTasks = localStorage.getItem('tasks');
