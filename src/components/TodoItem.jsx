@@ -8,13 +8,14 @@ function TodoItem (props) {
         onDeleteTask(task.id)
     }
 
-    const handleEditTask = () => {
-        
-    }
-
     return (
-        <div>
-            <h3>{serialNumber} == {task.text} <button onClick={handleEditTask}>Edit</button> <button onClick={handleDeleteTask}>Delete</button></h3>
+        <div className="bg-gray-800 text-white p-4 rounded-md shadow-md mb-4 flex justify-between items-center">
+            <div>
+                <h3 className="text-lg font-semibold">{serialNumber}: {task.text} </h3>
+            </div>
+            <div>
+                <button className="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded transition duration-200 ml-4" onClick={handleDeleteTask}>Delete</button>
+            </div>
         </div>
     )
 }

@@ -50,11 +50,10 @@ function App() {
   }, []) //dependecy array is blank so that the function runs only once whenever the page is refreshed
 
   return (
-    <>
-    <TodoInput onAddTask={addTask}/>
-
-    <TodoList tasks={tasks} onDeleteTask={deleteTask}/>
-    </>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-gray-900 rounded-lg shadow-lg">
+      <TodoInput onAddTask={addTask}/>
+      <TodoList tasks={tasks} onDeleteTask={deleteTask}/>
+    </div>
   )
   
 }
