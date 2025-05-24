@@ -6,8 +6,8 @@ function TodoList (props) {
     return (
         <div>
             {
-                tasks.map(task => (
-                    <TodoItem key={task.id} task={task} onDeleteTask={onDeleteTask} />
+                tasks.map((task, index) => (
+                    <TodoItem key={task.id} serialNumber={index + 1} task={task} onDeleteTask={onDeleteTask} />
                 ))
             }
         </div>
