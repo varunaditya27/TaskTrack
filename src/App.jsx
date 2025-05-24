@@ -1,11 +1,60 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TodoInput from './components/TodoInput'
+import TodoItem from './components/TodoItem'
+import TodoList from './components/TodoList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([])
+  const [taskID, setTaskID] = useState(1)
+
+  const taskItem = {
+    id : 5,
+    text : "Buy milk"
+  }
+
+  const addTask = (taskText) => {
+    const newTask = {
+      id : Date.now(),
+      text : taskText
+    }
+    
+    const updatedTasks = [...tasks, newTask]
+
+    setTasks(updatedTasks);
+    setTaskID(taskID + 1);
+
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    console.log(taskText);
+
+  }
+
+  const deleteTask = (id) => {
+    const existingTasks = localStorage.getItem("tasks");
+    const parsedTasks = JSON.parse(existingTasks); //string to object
+
+    const updatedTasks = parsedTasks.filter(task => task.id != id);
+
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+
+    console.log(`${id} deleted`);
+  }
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks'); //in the form of a string
+
+    if (storedTasks) {
+      const parsedTasks = JSON.parse(storedTasks); //converting string to array of objects (tasks)
+      setTasks(parsedTasks); //setting the inital state of 'tasks' to the existing list of tasks
+    }
+  }, []) //dependecy array is blank so that the function runs only once whenever the page is refreshed
 
   return (
-    <TodoInput />
+    <>
+    <TodoInput onAddTask={addTask}/>
+
+    <TodoList tasks={tasks} onDeleteTask={deleteTask}/>
+    </>
   )
   
 }
